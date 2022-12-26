@@ -11,7 +11,7 @@ class Page404 extends StatelessWidget {
         child: Text(
           "404 Pagina No Encontrada",
           style: GoogleFonts.montserratAlternates(
-              fontSize: 50, fontWeight: FontWeight.bold),
+              fontSize: 50, fontWeight: FontWeight.bold, color: Colors.red),
         ),
       ),
     );

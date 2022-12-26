@@ -52,7 +52,7 @@ class _DesktopBody extends StatelessWidget {
       child: Row(
         children: [
           //*Twitter BackGround - izquierdo
-          const BackGroundCustom(),
+          Expanded(child: BackGroundCustom()),
 
           //* View Container - derecho
           Container(
@@ -65,7 +65,7 @@ class _DesktopBody extends StatelessWidget {
                   height: 20,
                 ),
                 const CustomTitle(),
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
                 //*Vistas dinamicas
                 Expanded(child: child)
               ],
@@ -96,7 +96,7 @@ class _MobileBody extends StatelessWidget {
             height: 420,
             child: child,
           ),
-          const SizedBox(
+          Container(
             width: double.infinity,
             height: 400,
             child: BackGroundCustom(),

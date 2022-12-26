@@ -6,21 +6,18 @@ class BackGroundCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //*Toma todo el ancho disponible
-    return Expanded(
+    return Container(
+      decoration: buildBoxDecoration(),
       child: Container(
-        decoration: buildBoxDecoration(),
-        child: Container(
-          //*Limitar el tamaño de la imagen
-          constraints: const BoxConstraints(maxWidth: 400),
-
-          child: Center(
-            child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Image.asset(
-                  "twitter-white-logo.png",
-                  width: 400,
-                )),
-          ),
+        //*Limitar el tamaño de la imagen
+        constraints: const BoxConstraints(maxWidth: 400),
+        child: Center(
+          child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Image.asset(
+                "twitter-white-logo.png",
+                width: 400,
+              )),
         ),
       ),
     );
