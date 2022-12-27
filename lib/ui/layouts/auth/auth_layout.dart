@@ -24,14 +24,12 @@ class AuthLayout extends StatelessWidget {
         children: [
           //*Desktop
           size.width > 1000
-              ? _DesktopBody(
-                  child: child,
-                )
+              ? _DesktopBody(child: child)
               :
               //*Mobile
               _MobileBody(child: child),
           //*Links
-          LinksBar(),
+          const LinksBar(),
         ],
       ),
     ));

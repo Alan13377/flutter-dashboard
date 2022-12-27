@@ -4,9 +4,13 @@ import 'package:admin_dashboard/services/navigation_services.dart';
 import "package:flutter/material.dart";
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final authFormProvider = ChangeNotifierProvider((ref) => AuthProvider());
+enum AuthStatus {
+  checking,
+  authenticated,
+  notAuthenticated,
+}
 
-enum AuthStatus { checking, authenticated, notAuthenticated }
+final authFormProvider = ChangeNotifierProvider((ref) => AuthProvider());
 
 class AuthProvider extends ChangeNotifier {
   String? _token;
@@ -22,11 +26,11 @@ class AuthProvider extends ChangeNotifier {
     _token = "asdsdsfggdfghlskkfñf";
     LocalStorage.prefs.setString("token", _token!);
 
-    print("almacenar JSONWEBTOKEN: ${_token}");
-    //*TODO Navegar a Dashboard */
     authStatus = AuthStatus.authenticated;
+
     notifyListeners();
     isAuthenticated();
+
     NavigationService.replaceTo(Flurorouter.dashboardRoute);
   }
 
@@ -39,7 +43,6 @@ class AuthProvider extends ChangeNotifier {
       return false;
     }
 
-    //*TODO Comprobar si el token es valido
     await Future.delayed(Duration(milliseconds: 1000));
     authStatus = AuthStatus.authenticated;
     notifyListeners();
