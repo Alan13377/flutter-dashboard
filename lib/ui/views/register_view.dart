@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/providers/register_form_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
@@ -14,20 +15,21 @@ class RegisterView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final registerProvider = ref.watch(registerFormProvider);
+    final authProvider = ref.watch(authFormProvider);
     return Container(
       margin: const EdgeInsets.only(top: 50),
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Center(
           //*Ancho maximo
           child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 370),
+        constraints: const BoxConstraints(maxWidth: 370),
         child: Form(
           key: registerProvider.formKey,
           child: Column(
             children: [
               //**Nombre */
               TextFormField(
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                 ),
                 decoration: CustomInputs.loginInputDecoration(
@@ -51,7 +53,7 @@ class RegisterView extends ConsumerWidget {
 
               //**EMAIL */
               TextFormField(
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                 ),
                 decoration: CustomInputs.loginInputDecoration(
@@ -85,10 +87,13 @@ class RegisterView extends ConsumerWidget {
                 ),
                 validator: (value) {
                   //*Retorna null si el campo es valido
-                  if (value == null || value.isEmpty)
+                  if (value == null || value.isEmpty) {
                     return "Ingrese su Contraseña";
-                  if (value.length < 6)
+                  }
+                  if (value.length < 6) {
                     return "La Contraseña debe ser mayor a 6 caracteres";
+                  }
+                  return null;
                 },
                 onChanged: (value) {
                   registerProvider.password = value;
@@ -101,7 +106,15 @@ class RegisterView extends ConsumerWidget {
               //**ENVIO DEL FORM */
               CustomOutlinedButton(
                 onPressed: () {
-                  registerProvider.validateForm();
+                  final validForm = registerProvider.validateForm();
+                  if (validForm) {
+                    //*Envio de Datos
+                    authProvider.register(
+                      registerProvider.email,
+                      registerProvider.password,
+                      registerProvider.name,
+                    );
+                  }
                 },
                 text: "Crear Cuenta",
               ),

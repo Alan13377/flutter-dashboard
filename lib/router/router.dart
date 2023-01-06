@@ -1,10 +1,10 @@
+import 'package:admin_dashboard/router/admin_handlers.dart';
 import 'package:admin_dashboard/router/dashboard_handlers.dart';
 import 'package:admin_dashboard/router/no_page_found_handlers.dart';
 import 'package:fluro/fluro.dart';
-import 'package:admin_dashboard/router/admin_handlers.dart';
 
 class Flurorouter {
-  static final FluroRouter router = new FluroRouter();
+  static final FluroRouter router = FluroRouter();
 
   static String rootRoute = '/';
 
@@ -14,6 +14,8 @@ class Flurorouter {
 
   // Dashboard
   static String dashboardRoute = '/dashboard';
+  static String iconsRoute = '/dashboard/icons';
+  static String blankRoute = "/dashboard/blank";
 
   static void configureRoutes() {
     // Auth Routes
@@ -27,6 +29,11 @@ class Flurorouter {
     // Dashboard
     router.define(dashboardRoute,
         handler: DashboardHandlers.dashboard,
+        transitionType: TransitionType.fadeIn);
+    router.define(iconsRoute,
+        handler: DashboardHandlers.icon, transitionType: TransitionType.fadeIn);
+    router.define(blankRoute,
+        handler: DashboardHandlers.blankV,
         transitionType: TransitionType.fadeIn);
 
     // 404

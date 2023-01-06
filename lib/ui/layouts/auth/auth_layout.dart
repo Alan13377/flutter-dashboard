@@ -19,7 +19,7 @@ class AuthLayout extends StatelessWidget {
         body: Scrollbar(
       controller: controller,
       child: ListView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         controller: controller,
         children: [
           //*Desktop
@@ -38,7 +38,7 @@ class AuthLayout extends StatelessWidget {
 
 class _DesktopBody extends StatelessWidget {
   final Widget child;
-  const _DesktopBody({super.key, required this.child});
+  const _DesktopBody({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _DesktopBody extends StatelessWidget {
       child: Row(
         children: [
           //*Twitter BackGround - izquierdo
-          Expanded(child: BackGroundCustom()),
+          const Expanded(child: BackGroundCustom()),
 
           //* View Container - derecho
           Container(
@@ -77,7 +77,7 @@ class _DesktopBody extends StatelessWidget {
 
 class _MobileBody extends StatelessWidget {
   final Widget child;
-  const _MobileBody({super.key, required this.child});
+  const _MobileBody({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class _MobileBody extends StatelessWidget {
             height: 420,
             child: child,
           ),
-          Container(
+          const SizedBox(
             width: double.infinity,
             height: 400,
             child: BackGroundCustom(),

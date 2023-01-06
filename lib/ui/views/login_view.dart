@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/providers/login_form_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
@@ -65,10 +63,13 @@ class LoginView extends ConsumerWidget {
                 ),
                 validator: (value) {
                   //*Retorna null si el campo es valido
-                  if (value == null || value.isEmpty)
+                  if (value == null || value.isEmpty) {
                     return "Ingrese su Contraseña";
-                  if (value.length < 6)
+                  }
+                  if (value.length < 6) {
                     return "La Contraseña debe ser mayor a 6 caracteres";
+                  }
+                  return null;
                 },
                 onChanged: (value) {
                   loginProvider.password = value;

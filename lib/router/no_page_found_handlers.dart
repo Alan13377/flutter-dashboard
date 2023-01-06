@@ -3,6 +3,6 @@ import 'package:fluro/fluro.dart';
 
 class NoPageFoundHandlers {
   static Handler noPageFound = Handler(handlerFunc: (context, params) {
-    return Page404();
+    return const Page404();
   });
 }

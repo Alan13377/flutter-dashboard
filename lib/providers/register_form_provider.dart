@@ -34,9 +34,11 @@ class RegisterFormProvider extends ChangeNotifier {
 
   validateForm() {
     if (formKey.currentState!.validate()) {
-      print("Registro valido ${name} ${email} ${password}");
+      print("Registro valido $name $email $password");
+      return true;
     } else {
-      print("Registro no valido ${name} ${email} ${password}");
+      print("Registro no valido $name $email $password");
+      return false;
     }
   }
 }
